@@ -1,7 +1,9 @@
 <template>
 
     <div class="main-banner">
+
         <h1>Make your burger</h1>
+        
     </div>
 
 </template>
