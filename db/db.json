@@ -83,55 +83,27 @@
   ],
   "burgers": [
     {
-      "headers": {
-        "Content-type": "application/JSON"
-      },
-      "data": "{\"name\":null,\"bread\":null,\"meat\":null,\"optional\":[]}",
+      "name": "bred",
+      "bread": "Parmesão e Orégano",
+      "meat": "Picanha",
+      "optional": [
+        "Bacon",
+        "Salame"
+      ],
+      "status": "Em produção",
       "id": 1
     },
     {
-      "headers": {
-        "Content-type": "application/JSON"
-      },
-      "data": "{\"name\":\"das\",\"bread\":\"Parmesão e Orégano\",\"meat\":\"Picanha\",\"optional\":[\"Bacon\"],\"status\":\"Solicitado\"}",
+      "name": "kleber",
+      "bread": "Italiano Branco",
+      "meat": "Picanha",
+      "optional": [
+        "Bacon",
+        "Picles",
+        "Cheddar"
+      ],
+      "status": "Solicitado",
       "id": 2
-    },
-    {
-      "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "name": null,
-      "bread": null,
-      "meat": null,
-      "optional": [],
-      "status": "Solicitado",
-      "id": 6
-    },
-    {
-      "name": "dsa",
-      "bread": "Parmesão e Orégano",
-      "meat": "Veggie burger",
-      "optional": [
-        "Salame"
-      ],
-      "status": "Solicitado",
-      "id": 7
-    },
-    {
-      "name": "dsa",
-      "bread": "Integral",
-      "meat": "Alcatra",
-      "optional": [
-        "Bacon"
-      ],
-      "status": "Solicitado",
-      "id": 8
     }
   ]
 }

@@ -19,17 +19,16 @@
         
         <div id="burger-table-rows">
 
-            <div class="burger-table-row">
+            <div class="burger-table-row" v-for="(burger,index) in burgers" :key="index">
 
-                <div class="order-num">1</div>
-                <div>Jao</div>
-                <div>pao</div>
-                <div>carne</div>
+                <div class="order-num">{{burger.id}}</div>
+                <div>{{burger.name}}</div>
+                <div>{{burger.bread}}</div>
+                <div>{{burger.meat}}</div>
                 <div>
 
-                    <ul>
-                        <li>cebola</li>
-                        <li>picles</li>
+                    <ul v-for="(opcional, index) in burger.optional" :key="index">
+                        <li>{{opcional}}</li>
                     </ul>
                 </div>
 
@@ -37,11 +36,11 @@
 
                     <select name="status" class="status-order">
 
-                        <option value="">Selecione</option>
+                        <option :value="status.tipo" v-for="(status, index) in statuses" :key="index" :selected="burger.status == status.tipo">{{status.tipo}}</option>
 
                     </select>
 
-                    <button class="btn-delete">Cancelar</button>
+                    <button class="btn-delete" v-on:click="deletePedido">Cancelar</button>
 
                 </div>
 
@@ -56,8 +55,44 @@
 </template>
 
 <script>
+
+const axios = require('axios');
+
 export default {
     name: "Dashboard",
+    data(){
+        return{
+            burgers: null,
+            burger_id: null,
+            statuses: []
+        }
+    },
+    methods: {
+        async getPedidos(){
+            //PUXA OS PEDIDOS
+            const req = await axios.get('http://localhost:3000/burgers');
+
+            const data = await req.data;
+
+            this.burgers = data;
+
+            this.getStatus();
+
+        },
+        async getStatus(){
+            //PUXA OS STATUS
+            const req = await axios.get('http://localhost:3000/status');
+            const data = await req.data;
+
+            this.statuses = data;
+        },
+        async deletePedido(){
+
+        }
+    },
+    mounted(){
+        this.getPedidos();
+    }
 }
 </script>
 
@@ -99,7 +134,7 @@ export default {
 
 select{
     padding: 12px 6px;
-    margin-right: 12px;
+    margin-right: 6px;
 }
 
 .btn-delete {
