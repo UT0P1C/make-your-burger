@@ -2,7 +2,7 @@
 
     <div class="main-banner">
 
-        <h1>Make your burger</h1>
+        <h1><a href="#make-your-hamburger">Make your burger</a></h1>
         
     </div>
 
@@ -31,6 +31,11 @@ export default {
     background-color: #222;
     font-size: 60px;
     padding: 20px 40px;
+}
+
+.main-banner a {
+    color: #fff;
+    text-decoration: none;
 }
 
 </style>

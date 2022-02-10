@@ -1,10 +1,13 @@
 <template>
 
-    <div class="burger-form">
+    <div class="burger-form" id="make-your-hamburger">
 
         <h1>Monte Seu Burger</h1>
 
-        <p>mensagem</p>
+        <Message 
+        :msg="msg"
+        v-show="msg"
+        />
 
         <form id="burger-form" @submit="createHamburger">
 
@@ -73,6 +76,8 @@
 
 <script>
 
+import Message from './Message.vue';
+
 const axios = require('axios');
 
 export default {
@@ -129,7 +134,11 @@ export default {
 
             //EXIBIR UM ALERTA
 
+            this.msg = `Pedido N°${res.id} realizado com sucesso!`;
+
             //LIMPAR O ALERTA
+
+            setTimeout(() => this.msg = "", 3000);
 
             
             //LIMPAR CAMPOS
@@ -146,6 +155,9 @@ export default {
             this.meat = "";
             this.optional = "";
         }
+    },
+    components:{
+        Message
     }
 }
 </script>
