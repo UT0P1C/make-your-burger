@@ -1,81 +1,113 @@
+{
+  "ingredientes": {
+    "paes": [
+      {
+        "id": 1,
+        "tipo": "Italiano Branco"
+      },
+      {
+        "id": 2,
+        "tipo": "3 Queijos"
+      },
+      {
+        "id": 3,
+        "tipo": "Parmesão e Orégano"
+      },
+      {
+        "id": 4,
+        "tipo": "Integral"
+      }
+    ],
+    "carnes": [
+      {
+        "id": 1,
+        "tipo": "Maminha"
+      },
+      {
+        "id": 2,
+        "tipo": "Alcatra"
+      },
+      {
+        "id": 3,
+        "tipo": "Picanha"
+      },
+      {
+        "id": 4,
+        "tipo": "Veggie burger"
+      }
+    ],
+    "opcionais": [
+      {
+        "id": 1,
+        "tipo": "Bacon"
+      },
+      {
+        "id": 2,
+        "tipo": "Cheddar"
+      },
+      {
+        "id": 3,
+        "tipo": "Salame"
+      },
+      {
+        "id": 4,
+        "tipo": "Tomate"
+      },
+      {
+        "id": 4,
+        "tipo": "Cebola roxa"
+      },
+      {
+        "id": 4,
+        "tipo": "Pepino"
+      }
+    ]
+  },
+  "status": [
     {
-        "ingredientes": {
-        "paes": [
-            {
-            "id": 1,
-            "tipo": "Italiano Branco"
-            },
-            {
-            "id": 2,
-            "tipo": "3 Queijos"
-            },
-            {
-            "id": 3,
-            "tipo": "Parmesão e Orégano"
-            },
-            {
-            "id": 4,
-            "tipo": "Integral"
-            }
-        ],
-        "carnes": [
-            {
-            "id": 1,
-            "tipo": "Maminha"
-            },
-            {
-            "id": 2,
-            "tipo": "Alcatra"
-            },
-            {
-            "id": 3,
-            "tipo": "Picanha"
-            },
-            {
-            "id": 4,
-            "tipo": "Veggie burger"
-            }
-        ],
-        "opcionais": [
-            {
-            "id": 1,
-            "tipo": "Bacon"
-            },
-            {
-            "id": 2,
-            "tipo": "Cheddar"
-            },
-            {
-            "id": 3,
-            "tipo": "Salame"
-            },
-            {
-            "id": 4,
-            "tipo": "Tomate"
-            },
-            {
-            "id": 4,
-            "tipo": "Cebola roxa"
-            },
-            {
-            "id": 4,
-            "tipo": "Pepino"
-            }
-        ]
-        },
-        "status": [
-        {
-            "id": 1,
-            "tipo": "Solicitado"
-        },
-        {
-            "id": 2,
-            "tipo": "Em produção"
-        },
-        {
-            "id": 3,
-            "tipo": "Finalizado"
-        }
-        ],
-        "burgers": []
+      "id": 1,
+      "tipo": "Solicitado"
+    },
+    {
+      "id": 2,
+      "tipo": "Em produção"
+    },
+    {
+      "id": 3,
+      "tipo": "Finalizado"
     }
+  ],
+  "burgers": [
+    {
+      "headers": {
+        "Content-type": "application/JSON"
+      },
+      "data": "{\"name\":null,\"bread\":null,\"meat\":null,\"optional\":[]}",
+      "id": 1
+    },
+    {
+      "headers": {
+        "Content-type": "application/JSON"
+      },
+      "data": "{\"name\":\"das\",\"bread\":\"Parmesão e Orégano\",\"meat\":\"Picanha\",\"optional\":[\"Bacon\"],\"status\":\"Solicitado\"}",
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "name": null,
+      "bread": null,
+      "meat": null,
+      "optional": [],
+      "status": "Solicitado",
+      "id": 6
+    }
+  ]
+}

@@ -6,70 +6,147 @@
 
         <p>mensagem</p>
 
-        <div class="input-container">
+        <form id="burger-form" @submit="createHamburger">
 
-            <label for="name">Nome:</label>
+            <div class="input-container">
 
-            <input type="text" name="name" id="name" v-model="name" placeholder="Digite Seu nome">
+                <label for="name">Nome:</label>
 
-        </div>
-
-        <div class="input-container">
-
-            <label for="bread">Escolha o pão:</label>
-
-            <select name="bread" id="bread" v-model="bread">
-
-                <option value="">Escolha seu pão</option>
-
-                <option value="integral">integral</option>
-
-            </select>
-
-        </div>
-
-        <div class="input-container">
-
-            <label for="meat">Escolha a carne:</label>
-
-            <select name="meat" id="meat" v-model="meat">
-
-                <option value="">Escolha uma carne</option>
-
-                <option value="maminha">maminha</option>
-
-            </select>
-
-        </div>
-
-        <div id="optional-container" class="input-container">
-
-            <label id="optional-title" for="optional">Escolha os opcionais</label>
-
-            <div class="checkbox-container">
-
-                <input type="checkbox" name="optional" id="optional" value="salame" v-model="optional">
-
-                <span>salame</span>
+                <input type="text" name="name" id="name" v-model="name" placeholder="Digite Seu nome">
 
             </div>
 
-        </div>
-        
+            <div class="input-container">
 
-        <div class="input-container">
+                <label for="bread">Escolha o pão:</label>
 
-            <input type="submit" class="submit-btn" value="Monte meu burger">
+                <select name="bread" id="bread" v-model="bread">
 
-        </div>
+                    <option value="">Escolha seu pão</option>
+
+                    <option :value="bread.tipo" v-for="bread in breads" :key="bread.id">
+                        {{bread.tipo}}</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-container">
+
+                <label for="meat">Escolha a carne:</label>
+
+                <select name="meat" id="meat" v-model="meat">
+
+                    <option value="">Escolha uma carne</option>
+
+                    <option :value="meat.tipo" v-for="meat in meats" :key="meat.id">{{meat.tipo}}</option>
+
+                </select>
+
+            </div>
+
+            <div id="optional-container" class="input-container">
+
+                <label id="optional-title" for="optional">Escolha os opcionais</label>
+
+                <div class="checkbox-container" v-for="option in optionaldata" :key="option.id">
+
+                    <input type="checkbox" name="optional" id="optional" :value="option.tipo" v-model="optional">
+
+                    <span>{{option.tipo}}</span>
+
+                </div>
+
+            </div>
+            
+
+            <div class="input-container">
+
+                <input type="submit" class="submit-btn" value="Monte meu burger">
+
+            </div>
+        </form>
 
     </div>
 
 </template>
 
 <script>
+
+const axios = require('axios');
+
 export default {
-    name: 'BurgerForm'
+    name: 'BurgerForm',
+    data(){
+        return{
+            breads: null,
+            meats: null,
+            optionaldata: null,
+            name: null,
+            bread: null,
+            meat: null,
+            optional: [],
+            msg: null
+        }
+    },
+    mounted(){
+        this.getIngredients();
+    },
+    methods: {
+        async getIngredients(){
+            const req = await axios.get('http://localhost:3000/ingredientes');
+            const data = await req.data;
+
+            this.breads = data.paes;
+            this.meats = data.carnes;
+            this.optionaldata = data.opcionais;
+        },
+        async createHamburger(e){
+
+            e.preventDefault();
+
+            //CRIAR DADOS PARA ENVIAR PARA A DB
+
+            const data = {
+                name: this.name,
+                bread: this.bread,
+                meat: this.meat,
+                optional: Array.from(this.optional),
+                status: "Solicitado"
+            }
+
+            //CONVERTE OS DADOS PARA STRING EM JSON E ENVIA A DB
+
+            const dataJson = JSON.stringify(data);
+
+            const req = await fetch('http://localhost:3000/burgers', {
+                method: "POST",
+                headers: {"Content-type" : "application/JSON"},
+                body: dataJson
+            });
+
+            const res = await req.json();
+
+            //EXIBIR UM ALERTA
+
+            //LIMPAR O ALERTA
+
+            
+            //LIMPAR CAMPOS
+
+            this.cleanForm();
+
+
+
+
+        },
+        async cleanForm(){
+            this.name = "";
+            this.bread = "";
+            this.meat = "";
+            this.optional = "";
+        }
+    }
 }
 </script>
 
@@ -122,7 +199,7 @@ input, select{
 
 }
 
-.checkbox-container spann {
+.checkbox-container span {
     margin-left: 6px;
     font-weight: bold;
 }
